@@ -11,6 +11,10 @@ RUN apk add nginx=1.8.0-r1
 # Purge APK cache
 RUN rm -rf /var/cache/apk/*
 
+# forward nginx logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
 # Install ccll/consul-template (a hacked version with support for customizable template delimeters)
 ADD https://github.com/ccll/consul-template/releases/download/v0.7.0-1/consul-template /usr/local/bin/consul-template
 
