@@ -7,11 +7,11 @@
     upstream [[.Name]]-backend {
       # Generate a backend server for each instance.
       [[range service .Name]]
-      server [[.Address]]:[[.Port]]
+      server [[.Address]]:[[.Port]];
       [[end]]
     }
     server {
-      listen *:[[$app_port]]
+      listen [[$app_port]];
       location / {
         proxy_pass http://[[.Name]]-backend;
     }
