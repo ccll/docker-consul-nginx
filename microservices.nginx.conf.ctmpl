@@ -1,11 +1,3 @@
-worker_processes 2;
-
-events {
-    worker_connections 1024;
-}
-
-daemon off;
-
 # Generate upstream definition for each service group
 [[range services]]
   # Extract service 'canonical' port from service name (services should be named as "<name>_<port>")

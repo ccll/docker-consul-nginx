@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONFIG_FILE=/etc/nginx/my-nginx.conf
+CONFIG_FILE=/etc/nginx/conf.d/microservices.nginx.conf
 
 # Wait until nginx config file is generated
 while [ ! -f ${CONFIG_FILE} ]; do
