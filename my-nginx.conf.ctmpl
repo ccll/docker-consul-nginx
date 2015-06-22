@@ -1,0 +1,28 @@
+worker_processes 2;
+
+events {
+    worker_connections 1024;
+}
+
+daemon off;
+
+# Generate upstream definition for each service group
+[[range services]]
+  # Extract service 'canonical' port from service name (services should be named as "<name>_<port>")
+  [[$app_port := .Name | regexCapture ".*_([0-9]+)" 1]]
+  # Generate definition only for services with tag "microservice" and a non-null port
+  [[if and (.Tags | containsItem "microservice") (ne $app_port "" )]]
+    upstream [[.Name]]-backend {
+      # Generate a backend server for each instance.
+      [[range service .Name]]
+      server [[.Address]]:[[.Port]]
+      [[end]]
+    }
+    server {
+      listen *:[[$app_port]]
+      location / {
+        proxy_pass http://[[.Name]]-backend;
+    }
+  [[end]]
+[[end]]
+
