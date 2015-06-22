@@ -23,13 +23,11 @@ ADD consul-template.conf /etc/consul-template.conf
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD microservices.nginx.conf.ctmpl /etc/nginx/conf.d/microservices.nginx.conf.ctmpl
 ADD reload-nginx.sh /usr/local/bin/reload-nginx.sh
-ADD run-nginx.sh /usr/local/bin/run-nginx.sh
 ADD nginx.ini /etc/supervisor.d/nginx.ini
 ADD consul-template.ini /etc/supervisor.d/consul-template.ini
 
 # chmod
 RUN chmod u+rx,go+r /usr/local/bin/consul-template
-RUN chmod u+rx,go+r /usr/local/bin/run-nginx.sh
 RUN chmod u+rx,go+r /usr/local/bin/reload-nginx.sh
 
 # Command
