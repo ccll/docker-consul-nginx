@@ -14,6 +14,7 @@
       listen [[$app_port]];
       location / {
         proxy_pass http://[[.Name]]_backend/;
+      }
     }
   [[end]]
 [[end]]
