@@ -4,7 +4,7 @@
   [[$app_port := .Name | regexCapture ".*_([0-9]+)" 1]]
   # Generate definition only for services with tag "microservice" and a non-null port
   [[if and (.Tags | containsItem "microservice") (ne $app_port "" )]]
-    upstream [[.Name]]-backend {
+    upstream [[.Name]]_backend {
       # Generate a backend server for each instance.
       [[range service .Name]]
       server [[.Address]]:[[.Port]];
@@ -13,7 +13,7 @@
     server {
       listen [[$app_port]];
       location / {
-        proxy_pass http://[[.Name]]-backend;
+        proxy_pass http://[[.Name]]_backend;
     }
   [[end]]
 [[end]]
