@@ -15,8 +15,9 @@ RUN rm -rf /var/cache/apk/*
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Install ccll/consul-template (a hacked version with support for customizable template delimeters)
-ADD https://github.com/ccll/consul-template/releases/download/v0.7.0-1/consul-template /usr/local/bin/consul-template
+# Install consul-template
+ADD https://github.com/hashicorp/consul-template/releases/download/v0.10.0/consul-template_0.10.0_linux_amd64.tar.gz /tmp/consul-template.tar.gz
+RUN cd /tmp && tar xf consul-template.tar.gz && mv consul-template_0.10.0_linux_amd64/consul-template /usr/local/bin/ && rm -rf /tmp/*
 
 # Install config files
 ADD consul-template.conf /etc/consul-template.conf
