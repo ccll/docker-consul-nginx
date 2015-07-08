@@ -17,7 +17,7 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Install consul-template
 ADD https://github.com/hashicorp/consul-template/releases/download/v0.10.0/consul-template_0.10.0_linux_amd64.tar.gz /tmp/consul-template.tar.gz
-RUN cd /tmp && tar xf consul-template.tar.gz && mv consul-template_0.10.0_linux_amd64/consul-template /usr/local/bin/ && rm -rf /tmp/*
+RUN cd /tmp && tar zxf consul-template.tar.gz && mv consul-template_0.10.0_linux_amd64/consul-template /usr/local/bin/ && rm -rf /tmp/*
 
 # Install config files
 ADD consul-template.conf /etc/consul-template.conf
