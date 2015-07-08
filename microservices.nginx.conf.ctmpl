@@ -1,8 +1,8 @@
 # Generate upstream definition for each service group
 [[range services]]
   # Extract service 'canonical' port from service name (services should be named as "<name>-<port>")
-  [[$app_name := .Name | regexCapture "(.*)\-[0-9]+" 1]]
-  [[$app_port := .Name | regexCapture ".*\-([0-9]+)" 1]]
+  [[$app_name := .Name | regexCapture "(.*)\\-[0-9]+" 1]]
+  [[$app_port := .Name | regexCapture ".*\\-([0-9]+)" 1]]
   # Generate definition only for services with tag "microservice" and a non-null port
   [[if and (.Tags | containsItem "microservice") (ne $app_port "" )]]
     upstream [[$app_name]]_backend {
