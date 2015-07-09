@@ -2,6 +2,9 @@ FROM alpine:3.2
 
 RUN apk update
 
+# Install curl
+RUN apk add curl
+
 # Install supervisor
 RUN apk add supervisor=3.1.3-r1
 
