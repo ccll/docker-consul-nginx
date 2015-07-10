@@ -2,9 +2,9 @@
     {{if eq $tag "microservice"}}
         {{range $s}}
             {{if service .Name}}
-                {{$app_name := .Name | regexReplaceAll "(.+)\\-([0-9]+)" "$1"}}
-                {{$app_port := .Name | regexReplaceAll "(.+)\\-([0-9]+)" "$2"}}
-                upstream {{$app_name}}_backend {
+                {{$app_name := .Name | regexReplaceAll "(.+)@([0-9]+)" "$1"}}
+                {{$app_port := .Name | regexReplaceAll "(.+)@([0-9]+)" "$2"}}
+                upstream {{$app_name}}_{{$app_port}}_backend {
                     {{range service .Name}}
                         server {{.Address}}:{{.Port}};
                     {{end}}
@@ -12,7 +12,7 @@
                 server {
                     listen {{$app_port}};
                     location / {
-                        proxy_pass http://{{$app_name}}_backend/;
+                        proxy_pass http://{{$app_name}}_{{$app_port}}_backend/;
                     }
                 }
             {{end}}
