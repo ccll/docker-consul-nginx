@@ -1,5 +1,9 @@
-{{if key "consul-nginx/nginx.conf"}}
-{{key "consul-nginx/nginx.conf"}}
+{{if env "NGINX_CONF_KEY"}}
+    {{with $my_key := env "NGINX_CONF_KEY"}}
+        {{if key $my_key}}
+            {{key $my_key}}
+        {{end}}
+    {{end}}
 {{else}}
-{{file "/etc/nginx/nginx.conf.default"}}
+    {{file "/etc/nginx/nginx.conf.default"}}
 {{end}}

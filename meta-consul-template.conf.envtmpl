@@ -1,5 +1,5 @@
 # We assume 'consul' is running on the localhost
-consul = "127.0.0.1:8500"
+consul = "{{CONSUL_ADDR}}"
 retry = "5s"
 log_level = "info"
 
