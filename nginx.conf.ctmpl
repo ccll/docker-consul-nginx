@@ -1,0 +1,5 @@
+{{if key "consul-nginx/nginx.conf"}}
+{{key "consul-nginx/nginx.conf"}}
+{{else}}
+{{file "/etc/nginx/nginx.conf.default"}}
+{{end}}

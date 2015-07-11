@@ -9,19 +9,8 @@ events {
 }
 
 http {
-  sendfile          off;
-  tcp_nopush        on;
-  tcp_nodelay       on;
-  keepalive_timeout 15;
-
-  proxy_cache       off;
-  proxy_redirect    off;
-  proxy_buffering   off;
-  proxy_buffer_size 4k;
+  server_tokens off;
 
   access_log /var/log/nginx/access.log;
   error_log  /var/log/nginx/error.log;
-
-  include /etc/nginx/conf.d/*.conf;
 }
-
