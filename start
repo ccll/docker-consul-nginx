@@ -1,4 +1,0 @@
-#!/bin/bash
-cat /etc/consul-template.conf.envtmpl      | expandenv.sh > /etc/consul-template.conf
-cat /etc/meta-consul-template.conf.envtmpl | expandenv.sh > /etc/meta-consul-template.conf
-exec /usr/bin/supervisord --nodaemon -c /etc/supervisord.conf
